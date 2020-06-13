@@ -37,10 +37,9 @@ public class ClientTest {
 
             int a = objin.readInt ();
             double b = objin.readDouble ();
-            //readObject不太行，建议使用Map集合传送数据
             StudentTest stu = (StudentTest) objin.readObject ();//readObject要转换你设定的对象
-            //System.out.println (a + ":" + b + ":" + stu.getName());
-            System.out.println(a+":"+b+":end");
+            System.out.println (a + ":" + b + ":" + stu.getName());
+            //System.out.println(a+":"+b+":end");
 
         } catch (Exception e) {
             e.printStackTrace ();
