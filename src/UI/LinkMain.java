@@ -47,7 +47,8 @@ public class LinkMain extends JFrame {
     private JLabel mnextaddressa = new JLabel();
 
 
-    public LinkMain(){
+    public LinkMain(String str){
+        mcardnumberas.setText(str);
         initView();
         initComponents();
     }
@@ -167,7 +168,7 @@ public class LinkMain extends JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LinkMain().setVisible(true);
+                new LinkMain("1").setVisible(true);
             }
         });
     }

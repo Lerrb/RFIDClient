@@ -32,10 +32,10 @@ public class serialPortJframe extends JFrame {
     SerialPortManager spm=new SerialPortManager();
     private SerialPort sport;
 
-
+    static JFrame jf = new JFrame("串口");
     public serialPortJframe(String title)
     {
-        JFrame jf = new JFrame(title);
+
         //Container conn = jf.getContentPane();    //得到窗口的容器
         //JLabel L1 = new JLabel("Hello,world!");    //创建一个标签 并设置初始内容
         JPanel portPanel=new JPanel();
@@ -56,6 +56,9 @@ public class serialPortJframe extends JFrame {
         portList=spm.findPorts();
         String[] strs1=portList.toArray(new String[portList.size()]);
         portJcombo = new JComboBox(strs1);
+        if(portList.size()<1){
+            ShowUtils.warningMessage("未检测到串口！");
+        }
 
         String[] baudrate={"9600","19200","38400","57600","115200"};
         baudrateJcombo = new JComboBox(baudrate);
@@ -122,6 +125,7 @@ public class serialPortJframe extends JFrame {
                         data = readFromPort(sport);
                         out.println(new String(data));
                         dataView.append("\n"+new String(data));
+                        next(new String(data));
 
                     }
                 } catch (Exception e) {
@@ -138,6 +142,12 @@ public class serialPortJframe extends JFrame {
         dataView.setText("串口已关闭" + "\r\n");
         openPort.setText("打开串口");
         sport = null;
+    }
+
+    public void next(String str){
+        out.println("next");
+        new LinkMain(str).setVisible(true);
+        jf.dispose();
     }
 
     public static void main(String[] args) {
